@@ -1,0 +1,17 @@
+{
+  "name": "evolution-api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "npx tsup src/main.ts --format cjs,esm --dts",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.2.2"
+  }
+}
