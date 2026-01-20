@@ -1,29 +1,21 @@
-# -----------------------------
-# Dockerfile para EvolutionAPI
-# -----------------------------
+# Usar Node 20 Alpine leve
 FROM node:20-alpine
 
-# Diretório de trabalho
-WORKDIR /app
+# Criar diretório da app
+WORKDIR /usr/src/app
 
-# Copiar package.json e package-lock.json
+# Copiar package.json e package-lock.json (se existir)
 COPY package*.json ./
 
-# Instalar dependências (prod + dev para build)
+# Instalar dependências
 RUN npm install
 
-# Copiar todo o código
+# Copiar todo o código fonte
 COPY . .
 
-# Build do TypeScript com tsup
-RUN npm run build
-
-# Expor a porta que o Render vai usar
+# Expor porta (Render define PORT dinamicamente)
+ENV PORT=10000
 EXPOSE 10000
 
-# Variáveis de ambiente padrão
-ENV NODE_ENV=production
-ENV PORT=10000
-
-# Comando para iniciar a API
+# Comando para iniciar a app
 CMD ["npm", "start"]
